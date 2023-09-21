@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://github.com/johentsch/specs/measure.schema.json",
+  "title": "Measure",
+  "description": "A single measure (bar) unit of a music score.",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "integer"
+    },
+    "number": {
+      "type": "integer"
+    },
+    "time-signature": {
+      "type": "string"
+    },
+    "qstamp": {
+      "type": "number"
+    },
+    "nominal_length": {
+      "type": "number"
+    },
+    "actual_length": {
+      "type": "number"
+    },
+    "start_repeat": {
+      "type": "boolean"
+    },
+    "end_repeat": {
+      "type": "boolean"
+    },
+    "next": {
+      "type": "array",
+      "items": [
+        {
+          "type": "integer"
+        }
+      ]
+    }
+  },
+  "required": [
+    "count",
+    "number",
+    "time-signature",
+    "qstamp",
+    "nominal_length",
+    "actual_length",
+    "start_repeat",
+    "end_repeat",
+    "next"
+  ]
+}
