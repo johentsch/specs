@@ -110,5 +110,6 @@
         "count"
       ]
     }
-  ]
+  ],
+  "additionalProperties": false
 }

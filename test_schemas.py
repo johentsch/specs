@@ -19,7 +19,7 @@ def test_measure_from_scratch():
     measure = {
         "count": 1,
         "number": 1,
-        "time-signature": "3\/4",
+        "time_signature": "3\/4",
         "qstamp": 0.0,
         "nominal_length": 3.0,
         "actual_length": 1.0,
