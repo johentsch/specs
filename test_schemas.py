@@ -48,3 +48,4 @@ if __name__ == '__main__':
     filepath = "chor001.measuremap.json"
     measure_map = load_json(filepath)
     test_measures_from_map(measure_map)
+    validate_measure_map_file(filepath)

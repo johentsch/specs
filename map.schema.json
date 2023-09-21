@@ -6,7 +6,7 @@
   "type": "array",
   "items": [
     {
-        "$ref" : "measure.schema.json"
+        "$ref" : "https://github.com/johentsch/specs/measure.schema.json"
     }
   ]
 }
