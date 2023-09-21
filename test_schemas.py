@@ -1,18 +1,33 @@
+
+import argparse
 import json
 from typing import Sequence, TypeAlias
 
 from jsonschema import validate
 from jsonschema.exceptions import ValidationError
 
+
+parser = argparse.ArgumentParser(
+                    description='Validate json format.')
+
+parser.add_argument('-f', '--file', action='append', default=['chor001.measuremap.json'],
+                    help="validate measure map (%(default)s)")
+
+parser.add_argument('-v', '--verbose', action="store_true",
+                    help="verbose output")
+
 Measure: TypeAlias = dict
 MeasureMap: TypeAlias = Sequence[Measure]
 
 def load_json(path):
+    if not 'schema' in path:
+        print('<==', path)
     with open(path, 'r', encoding='utf-8') as f:
         return json.load(f)
 
-def validate_measure(measure: Measure):
-    measure_schema = load_json('measure.schema.json')
+def validate_measure(measure: Measure, measure_schema=None):
+    if not measure_schema:
+        measure_schema = load_json('measure.schema.json')
     validate(measure, measure_schema)
 
 def test_measure_from_scratch():
@@ -32,9 +47,10 @@ def test_measure_from_scratch():
     validate_measure(measure)
 
 def test_measures_from_map(measure_map: MeasureMap):
+    measure_schema = load_json('measure.schema.json')
     for measure in measure_map:
         try:
-            validate_measure(measure)
+            validate_measure(measure, measure_schema)
         except ValidationError as e:
             print(f"Validation of {measure} failed with:\n{e!r}")
 
@@ -44,8 +60,16 @@ def validate_measure_map_file(filepath: str):
     validate(measure_map, measure_map_schema)
 
 if __name__ == '__main__':
+    args = parser.parse_args()
+
     test_measure_from_scratch()
-    filepath = "chor001.measuremap.json"
-    measure_map = load_json(filepath)
-    test_measures_from_map(measure_map)
-    validate_measure_map_file(filepath)
+
+    for f in args.file:
+        print('test_measures_from_map...')
+        measure_map = load_json(f)
+        test_measures_from_map(measure_map)
+
+        print('validate_measure_map_file...')
+        validate_measure_map_file(f)
+
+        print()
