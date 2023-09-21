@@ -41,7 +41,7 @@ def test_measure_from_scratch():
         "start_repeat": False,
         "end_repeat": False,
         "next": [
-            2,
+            "2",
         ]
     }
     validate_measure(measure)
