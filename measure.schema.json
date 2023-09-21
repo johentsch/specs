@@ -99,15 +99,16 @@
       ]
     }
   },
-  "required": [
-    "count",
-    "number",
-    "time-signature",
-    "qstamp",
-    "nominal_length",
-    "actual_length",
-    "start_repeat",
-    "end_repeat",
-    "next"
+  "anyOf": [
+    {
+      "required": [
+        "ID"
+      ]
+    },
+    {
+      "required": [
+        "count"
+      ]
+    }
   ]
 }
