@@ -56,7 +56,10 @@
       ]
     },
     "nominal_length": {
-      "type": ["number", "null"],
+      "type": [
+        "number",
+        "null"
+      ],
       "minimum": 0,
       "description": "The default duration derived from the given 'time_signature', in quarter notes.",
       "examples": [
@@ -70,11 +73,11 @@
       "type": "number",
       "exclusiveMinimum": 0,
       "description": "The actual duration of the measure, in quarter notes.",
-        "examples": [
-            0.25,
-            4,
-            6.0
-        ]
+      "examples": [
+        0.25,
+        4,
+        6.0
+      ]
     },
     "start_repeat": {
       "type": [
@@ -96,18 +99,41 @@
       "type": "array",
       "items": [
         {
-          "type": "integer"
+          "type": ["string", "integer"]
         }
-      ]
+      ],
+      "description": "The 'ID' strings or 'count' integers that correspond to all measures that can follow this one. The corresponding field needs to be present in the MeasureMap."
     }
   },
   "anyOf": [
     {
+      "properties": {
+        "next": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            }
+          ],
+          "description": "The IDs that correspond to all measures that can follow this one."
+        }
+      },
       "required": [
         "ID"
       ]
     },
     {
+      "properties": {
+        "next": {
+          "type": "array",
+          "items": [
+            {
+              "type": "integer"
+            }
+          ],
+          "description": "The counts that correspond to all measures that can follow this one."
+        }
+      },
       "required": [
         "count"
       ]

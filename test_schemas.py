@@ -45,6 +45,14 @@ def test_measure_from_scratch():
         ]
     }
     validate_measure(measure)
+    measure["next"] = ["2"]
+    try:
+        validate_measure(measure)
+        raise AssertionError(f"Validation of {measure} should have failed because ID is not present.")
+    except ValidationError:
+        pass
+    measure["ID"] = "1"
+    validate_measure(measure)
 
 def test_measures_from_map(measure_map: MeasureMap):
     measure_schema = load_json('measure.schema.json')
