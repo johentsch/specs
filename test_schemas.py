@@ -41,9 +41,17 @@ def test_measure_from_scratch():
         "start_repeat": False,
         "end_repeat": False,
         "next": [
-            "2",
+            2,
         ]
     }
+    validate_measure(measure)
+    measure["next"] = ["2"]
+    try:
+        validate_measure(measure)
+        raise AssertionError(f"Validation of {measure} should have failed because ID is not present.")
+    except ValidationError:
+        pass
+    measure["ID"] = "1"
     validate_measure(measure)
 
 def test_measures_from_map(measure_map: MeasureMap):
