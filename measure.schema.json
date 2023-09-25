@@ -81,6 +81,7 @@
         "boolean",
         "number"
       ],
+      "default": false,
       "description": "Typical usage is with the bool type, with 'true' indicating a start repeat at the beginning of the measure."
     },
     "end_repeat": {
@@ -88,6 +89,7 @@
         "boolean",
         "number"
       ],
+      "default": false,
       "description": "Typical usage is with the bool type, with 'true' indicating an end repeat at the end of the measure."
     },
     "next": {
